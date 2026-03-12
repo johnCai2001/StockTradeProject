@@ -15,8 +15,6 @@ public class StockDto {
 	    public StockDto() {
 	    }
 	    
-	    
-
 		public StockDto(String stockCode, String stockName, double currentPrice, double changeAmount,
 				double changePercent) {
 			super();
@@ -26,8 +24,6 @@ public class StockDto {
 			this.changeAmount = changeAmount;
 			this.changePercent = changePercent;
 		}
-
-
 
 		public String getStockCode() {
 			return stockCode;
