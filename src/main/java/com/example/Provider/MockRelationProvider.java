@@ -1,4 +1,4 @@
-package Provider;
+package com.example.Provider;
 
 public class MockRelationProvider {
 

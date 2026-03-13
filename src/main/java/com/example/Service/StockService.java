@@ -1,11 +1,12 @@
-package Service;
+package com.example.Service;
 
 
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
-import Dto.StockDto;
-import Dto.StockPricePointDto;
+
+import com.example.Dto.StockDto;
+import com.example.Dto.StockPricePointDto;
 
 @Service
 public class StockService {

@@ -1,10 +1,10 @@
-package Service;
+package com.example.Service;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import Dto.CompanyRelationDto;
+import com.example.Dto.CompanyRelationDto;
 
 @Service
 public class DashboardService {
