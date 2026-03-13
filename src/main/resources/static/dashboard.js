@@ -32,20 +32,15 @@ async function loadStocks() {
 
 //歷史股價
 async function loadPriceHistory(stockCode) {
-    try {
-        const response = await fetch(`/api/stocks/${stockCode}/prices`);
-        const prices = await response.json();
+    const response = await fetch(`/api/stocks/${stockCode}/prices`);
+    const prices = await response.json();
 
-        document.getElementById("chartTitle").textContent = `${stockCode} 一年股價走勢`;
+    document.getElementById("chartTitle").textContent = `${stockCode} 一年股價走勢`;
 
-        const chartArea = document.getElementById("chartArea");
-        chartArea.innerHTML = `
-            <pre>${JSON.stringify(prices, null, 2)}</pre>
-        `;
-    } catch (error) {
-        console.error("載入股價資料失敗:", error);
-    }
+    document.getElementById("chartArea").innerHTML =
+        `<pre>${JSON.stringify(prices, null, 2)}</pre>`;
 }
+
 
 //廠商上下游關係
 async function loadRelations(stockCode) {
