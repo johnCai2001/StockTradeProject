@@ -3,10 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>基本頁面</title>
+    <title>股票 Dashboard</title>
+    <link rel="stylesheet" href="/css/dashboard.css">
 </head>
 <body>
-    <h1>Hello World</h1>
-    <p>這是一個最基本的 HTML 頁面。</p>
+    <div class="container">
+        
+        <header class="header">
+            <h1>股票自動化交易 Dashboard</h1>
+            <p>顯示股票清單、年度股價走勢與上下游關係</p>
+            <input type="text" id="searchInput" placeholder="搜尋股票代碼或公司名稱">
+        </header>
+
+        <main class="main-layout">
+            
+            <!-- 左側股票列表 -->
+            <section class="stock-list-panel">
+                <h2>股票列表</h2>
+                <div id="stockList" class="stock-list">
+                    <!-- JS 動態塞股票卡片 -->
+                </div>
+            </section>
+
+            <!-- 右側內容 -->
+            <section class="content-panel">
+                
+                <!-- 股價圖 -->
+                <div class="chart-panel">
+                    <h2 id="chartTitle">一年股價走勢</h2>
+                    <div id="chartArea" class="chart-area">
+                        請選擇股票
+                    </div>
+                </div>
+
+                <!-- 公司上下游 -->
+                <div class="relation-panel">
+                    <h2 id="relationTitle">公司上下游關係</h2>
+                    <div id="relationList" class="relation-list">
+                        請選擇股票
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <script src="/js/dashboard.js"></script>
 </body>
-</html>
+</html>ml>
