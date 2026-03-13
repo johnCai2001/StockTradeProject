@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>股票 Dashboard</title>
-    <link rel="stylesheet" href="/css/dashboard.css">
-</head>
+<html lang="zh-Hant" xmlns:th="http://www.thymeleaf.org">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	    <title>股票 Dashboard</title>
+	    <link rel="stylesheet" th:href="@{/dashboard.css}">
+		<script th:src="@{/dashboard.js}"></script>
+	</head>
 <body>
     <div class="container">
-        
         <header class="header">
             <h1>股票自動化交易 Dashboard</h1>
             <p>顯示股票清單、年度股價走勢與上下游關係</p>
@@ -47,7 +47,5 @@
             </section>
         </main>
     </div>
-
-    <script src="/js/dashboard.js"></script>
 </body>
-</html>ml>
+</html>
