@@ -41,29 +41,23 @@ async function loadPriceHistory(stockCode) {
         `<pre>${JSON.stringify(prices, null, 2)}</pre>`;
 }
 
-
 //廠商上下游關係
 async function loadRelations(stockCode) {
-    try {
-        const response = await fetch(`/api/stocks/${stockCode}/relations`);
-        const relations = await response.json();
+    const response = await fetch(`/api/stocks/${stockCode}/relations`);
+    const relations = await response.json();
 
-        document.getElementById("relationTitle").textContent = `${stockCode} 公司上下游關係`;
+    const relationList = document.getElementById("relationList");
+    document.getElementById("relationTitle").textContent = `${stockCode} 公司上下游關係`;
+    relationList.innerHTML = "";
 
-        const relationList = document.getElementById("relationList");
-        relationList.innerHTML = "";
-
-        relations.forEach(relation => {
-            const item = document.createElement("div");
-            item.className = "relation-item";
-            item.innerHTML = `
-                <p><strong>公司：</strong>${relation.companyName}</p>
-                <p><strong>關係：</strong>${relation.relationType}</p>
-                <p><strong>說明：</strong>${relation.description}</p>
-            `;
-            relationList.appendChild(item);
-        });
-    } catch (error) {
-        console.error("載入公司關係失敗:", error);
-		     }
-			 }
+    relations.forEach(relation => {
+        const item = document.createElement("div");
+        item.className = "relation-item";
+        item.innerHTML = `
+            <p><strong>公司：</strong>${relation.companyName}</p>
+            <p><strong>關係：</strong>${relation.relationType}</p>
+            <p><strong>說明：</strong>${relation.description}</p>
+        `;
+        relationList.appendChild(item);
+    });
+}
