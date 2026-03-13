@@ -1,34 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
-  loadStocks();
+    loadStocks();
+});
+  
+//導入股票資訊至前端畫面
 async function loadStocks() {
-    try {
-        const response = await fetch("/api/stocks");
-        const stocks = await response.json();
-        const stockList = document.getElementById("stockList");
-        
-		stockList.innerHTML = "";
-        stocks.forEach(stock => {
-            const card = document.createElement("div");
-            card.className = "stock-card";
-            card.innerHTML = `
-                <h3>${stock.stockCode}</h3>
-                <p>${stock.companyName}</p>
-                <p>現價：${stock.currentPrice}</p>
-                <p>漲跌：${stock.change}</p>
-            `;
+    const response = await fetch("/api/stocks");
+    const stocks = await response.json();
 
-            card.addEventListener("click", () => {
-                loadPriceHistory(stock.stockCode);
-                loadRelations(stock.stockCode);
-            });
+    const stockList = document.getElementById("stockList");
+    stockList.innerHTML = "";
 
-            stockList.appendChild(card);
+    stocks.forEach(stock => {
+        const card = document.createElement("div");
+        card.className = "stock-card";
+
+        card.innerHTML = `
+            <h3>${stock.stockCode}</h3>
+            <p>${stock.companyName}</p>
+            <p>現價：${stock.currentPrice}</p>
+            <p>漲跌：${stock.change}</p>
+        `;
+
+        card.addEventListener("click", () => {
+            loadPriceHistory(stock.stockCode);
+            loadRelations(stock.stockCode);
         });
-    } catch (error) {
-        console.error("載入股票列表失敗:", error);
-    }
+
+        stockList.appendChild(card);
+    });
 }
 
+//歷史股價
 async function loadPriceHistory(stockCode) {
     try {
         const response = await fetch(`/api/stocks/${stockCode}/prices`);
@@ -45,6 +47,7 @@ async function loadPriceHistory(stockCode) {
     }
 }
 
+//廠商上下游關係
 async function loadRelations(stockCode) {
     try {
         const response = await fetch(`/api/stocks/${stockCode}/relations`);
@@ -67,5 +70,5 @@ async function loadRelations(stockCode) {
         });
     } catch (error) {
         console.error("載入公司關係失敗:", error);
-    }
-}
+		     }
+			 }
