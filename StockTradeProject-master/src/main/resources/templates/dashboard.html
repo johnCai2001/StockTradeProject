@@ -5,9 +5,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>股票 Dashboard</title>
 	    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
-		<script th:src="@{/js/dashboard.js}"></script>
-		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-		<script th:src="@{/js/dashboard.js}"></script>
+	    <script th:src="@{/js/dashboard.js}" defer></script>
 	</head>
 <body>
 	
@@ -36,10 +34,6 @@
 					<h2 id="chartTitle"></h2>
 					<div id="chartArea"></div>
 					<section class="price-panel">
-					    <h2 id="chartTitle">一年股價走勢</h2>
-					    <div id="chartArea" class="price-area">
-					        <canvas id="priceChart"></canvas>
-					    </div>
 					</section>
                         請選擇股票
                     </div>
