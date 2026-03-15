@@ -87,6 +87,21 @@ body {
     margin-bottom: 6px;
 }
 
+.price-row{
+    display:flex;
+    justify-content:space-between;
+    padding:8px;
+    border-bottom:1px solid #eee;
+}
+
+.price-date{
+    color:#666;
+}
+
+.price-value{
+    font-weight:bold;
+}
+
 .stock-card p {
     font-size: 14px;
     color: #555;
