@@ -41,6 +41,5 @@ public class StockApiController {
     @GetMapping("/{stockCode}/relations")
     public List<CompanyRelationDto>  getCompanyRelationDto(@PathVariable String stockCode) {
         return dashboardService.getMockCompanyRelations(stockCode);
-    }
-    
+    } 
 }

@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     loadStocks();
+	console.log("JS LOADED");
 });
   
 //導入股票資訊至前端畫面
 async function loadStocks() {
-    const response = await fetch("/api/stocks");
+    const response = await fetch("/api/getstocks");
     const stocks = await response.json();
 
     const stockList = document.getElementById("stockList");
@@ -27,23 +28,45 @@ async function loadStocks() {
         });
 
         stockList.appendChild(card);
+		console.log("stocks LOADED");
     });
 }
 
 //歷史股價
 async function loadPriceHistory(stockCode) {
-    const response = await fetch(`/api/stocks/${stockCode}/prices`);
+	
+
+    const response = await fetch(`/api/${stockCode}/prices`);
     const prices = await response.json();
 
-    document.getElementById("chartTitle").textContent = `${stockCode} 一年股價走勢`;
+    const chartTitle = document.getElementById("chartTitle");
+    const chartArea = document.getElementById("chartArea");
 
-    document.getElementById("chartArea").innerHTML =
-        `<pre>${JSON.stringify(prices, null, 2)}</pre>`;
+    chartTitle.textContent = `${stockCode} 一年股價走勢`;
+
+    chartArea.innerHTML = "";
+
+    prices.forEach(price => {
+
+        const row = document.createElement("div");
+        row.className = "price-row";
+
+        row.innerHTML = `
+            <span class="price-date">${price.date}</span>
+            <span class="price-value">${price.price}</span>
+        `;
+
+        chartArea.appendChild(row);
+
+    });
+
+    console.log("PriceHistory LOADED");
+
 }
 
 //廠商上下游關係
 async function loadRelations(stockCode) {
-    const response = await fetch(`/api/stocks/${stockCode}/relations`);
+    const response = await fetch(`/api/${stockCode}/relations`);
     const relations = await response.json();
 
     const relationList = document.getElementById("relationList");
@@ -59,5 +82,7 @@ async function loadRelations(stockCode) {
             <p><strong>說明：</strong>${relation.description}</p>
         `;
         relationList.appendChild(item);
+		console.log("Relations LOADED");
+	   
     });
 }
