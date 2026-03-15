@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	console.log("JS LOADED");
 });
   
+
 //導入股票資訊至前端畫面
 async function loadStocks() {
     const response = await fetch('/api/getstocks');
@@ -15,7 +16,7 @@ async function loadStocks() {
 
     stocks.forEach(stock => {
         const item = document.createElement("div");
-        item.className = "stock-item";
+		item.className = "stock-card";
         item.innerHTML = `
             <p><strong>代號：</strong>${stock.stockCode}</p>
             <p><strong>名稱：</strong>${stock.stockName}</p>
@@ -33,22 +34,31 @@ async function loadStocks() {
     console.log("Stocks LOADED");
 }
   
+
 //歷史股價
 async function loadPriceHistory(stockCode) {
-	
     const response = await fetch(`/api/${stockCode}/prices`);
     const prices = await response.json();
-    prices.forEach(price => {
 
+    document.getElementById("chartTitle").textContent = `${stockCode} 一年股價走勢`;
+
+    const chartArea = document.getElementById("chartArea");
+    chartArea.innerHTML = "";
+
+    prices.forEach(price => {
         const row = document.createElement("div");
         row.className = "price-row";
         row.innerHTML = `
             <span class="price-date">${price.date}</span>
             <span class="price-value">${price.price}</span>
         `;
+
+        chartArea.appendChild(row);
     });
+
     console.log("PriceHistory LOADED");
 }
+
 
 //廠商上下游關係
 async function loadRelations(stockCode) {

@@ -10,12 +10,14 @@ body {
     color: #333;
 }
 
+/* 整體容器 */
 .container {
     width: 95%;
     max-width: 1400px;
     margin: 20px auto;
 }
 
+/* Header */
 .header {
     background-color: white;
     padding: 20px;
@@ -41,12 +43,15 @@ body {
     border-radius: 8px;
 }
 
+/* 主版型 */
 .main-layout {
     display: grid;
     grid-template-columns: 320px 1fr;
     gap: 20px;
+    align-items: start;
 }
 
+/* 面板 */
 .stock-list-panel,
 .chart-panel,
 .relation-panel {
@@ -62,44 +67,27 @@ body {
     margin-bottom: 16px;
 }
 
-.stock-list {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+/* 左側股票列表 */
+.stock-list-panel {
+    height: 650px;
 }
 
+#stockList {
+    height: calc(460px - 10px);
+    overflow-y: auto;
+}
+
+/* 股票卡片 */
 .stock-card {
-    border: 1px solid #ddd;
+    background-color: #f2f2f2;
     border-radius: 10px;
-    padding: 12px;
+    padding: 15px;
+    margin-bottom: 12px;
     cursor: pointer;
-    transition: 0.2s;
-    background-color: #fafafa;
 }
 
 .stock-card:hover {
     background-color: #eef4ff;
-    border-color: #7aa7ff;
-}
-
-.stock-card h3 {
-    font-size: 18px;
-    margin-bottom: 6px;
-}
-
-.price-row{
-    display:flex;
-    justify-content:space-between;
-    padding:8px;
-    border-bottom:1px solid #eee;
-}
-
-.price-date{
-    color:#666;
-}
-
-.price-value{
-    font-weight:bold;
 }
 
 .stock-card p {
@@ -107,14 +95,15 @@ body {
     color: #555;
 }
 
+/* 右側內容區 */
 .content-panel {
     display: grid;
-    grid-template-rows: 1fr 1fr;
     gap: 20px;
 }
 
+/* 股價區 */
 .chart-area {
-    height: 300px;
+    min-height: 200px;
     border: 2px dashed #ccc;
     border-radius: 10px;
     display: flex;
@@ -124,6 +113,23 @@ body {
     background-color: #fafafa;
 }
 
+/* 股價列表 */
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.price-date {
+    color: #666;
+}
+
+.price-value {
+    font-weight: bold;
+}
+
+/* 關聯公司 */
 .relation-list {
     display: flex;
     flex-direction: column;
