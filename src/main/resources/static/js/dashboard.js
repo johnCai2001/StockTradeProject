@@ -7,34 +7,31 @@ document.addEventListener("DOMContentLoaded", () => {
 async function loadPriceHistory(stockCode) {
     const response = await fetch(`/api/${stockCode}/prices`);
     const prices = await response.json();
-
     document.getElementById("chartTitle").textContent = `${stockCode} 一年股價走勢`;
 
     const labels = prices.map(price => price.date);
     const data = prices.map(price => price.price);
-
     const ctx = document.getElementById("priceChart").getContext("2d");
-
-    if (priceChart !== null) {
-        priceChart.destroy();
-    }
-    priceChart = new Chart(ctx, {
-        type: "line",
-        data: {
-            labels: labels,
-            datasets: [{
-                label: `${stockCode} 股價`,
-                data: data,
-                borderWidth: 2,
-                tension: 0.3,
-                fill: false
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false
-        }
-    });
+	if (priceChart !== null) {
+	       priceChart.destroy();
+	   }
+	   priceChart = new Chart(ctx, {
+	       type: "line",
+	       data: {
+	           labels: labels,
+	           datasets: [{
+	               label: `/api/${stockCode}/prices`,
+	               data: data,
+	               borderWidth: 2,
+	               tension: 0.3,
+	               fill: false
+	           }]
+	       },
+	       options: {
+	           responsive: true,
+	           maintainAspectRatio: false
+	       }
+	   });
     console.log("PriceHistory Chart LOADED");
 }
 

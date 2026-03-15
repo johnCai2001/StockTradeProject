@@ -1,5 +1,4 @@
 let priceChart = null;
-
 function renderStockChart(stockCode, prices) {
     const chartTitle = document.getElementById("chartTitle");
     const canvas = document.getElementById("priceChart");
