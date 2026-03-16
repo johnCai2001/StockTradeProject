@@ -6,6 +6,8 @@
 	    <title>股票 Dashboard</title>
 	    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
 		<script th:src="@{/js/dashboard.js}"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<script th:src="@{/stock-chart.js}"></script>
 	</head>
 <body>
 	
@@ -29,6 +31,7 @@
 
             <!-- 右側內容 -->
             <section class="content-panel">
+				
                 
                 <!-- 股價圖 -->
                 <div class="chart-panel">

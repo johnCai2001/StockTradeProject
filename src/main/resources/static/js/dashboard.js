@@ -1,10 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     loadStocks();
-	loadPriceHistory()
-	loadRelations() 
-	console.log("JS LOADED");
+
+    document.getElementById("chartTitle").textContent = "";
+    document.getElementById("chartArea").innerHTML = "";
+
+    document.getElementById("relationTitle").textContent = "";
+    document.getElementById("relationList").innerHTML = "";
+	console.log("js data loaded");
 });
-  
 
 //導入股票資訊至前端畫面
 async function loadStocks() {
@@ -21,16 +24,13 @@ async function loadStocks() {
             <p><strong>代號：</strong>${stock.stockCode}</p>
             <p><strong>名稱：</strong>${stock.stockName}</p>
         `;
-
 		item.addEventListener("click", () => {
 		           loadPriceHistory(stock.stockCode);
 		           loadRelations(stock.stockCode);
 		           console.log("clicked:", stock.stockCode);
 		       });
-
         stockList.appendChild(item);
     });
-
     console.log("Stocks LOADED");
 }
   
@@ -39,12 +39,11 @@ async function loadStocks() {
 async function loadPriceHistory(stockCode) {
     const response = await fetch(`/api/${stockCode}/prices`);
     const prices = await response.json();
-
-    document.getElementById("chartTitle").textContent = `${stockCode} 一年股價走勢`;
-
-    const chartArea = document.getElementById("chartArea");
-    chartArea.innerHTML = "";
-
+	const chartArea = document.getElementById("chartArea");
+	  
+	chartArea.innerHTML = "";
+	  document.getElementById("chartTitle").textContent = `${stockCode} 一年股價走勢`;
+ 
     prices.forEach(price => {
         const row = document.createElement("div");
         row.className = "price-row";
@@ -52,10 +51,14 @@ async function loadPriceHistory(stockCode) {
             <span class="price-date">${price.date}</span>
             <span class="price-value">${price.price}</span>
         `;
-
+		
         chartArea.appendChild(row);
     });
-
+	chartArea.onclick = () => {
+				      loadPriceHistory(stock.stockCode);
+				      loadRelations(stock.stockCode);
+				  };
+	
     console.log("PriceHistory LOADED");
 }
 
