@@ -1,11 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     loadStocks();
-
     document.getElementById("chartTitle").textContent = "";
     document.getElementById("chartArea").innerHTML = "";
-
     document.getElementById("relationTitle").textContent = "";
     document.getElementById("relationList").innerHTML = "";
+    document.getElementById("chartEmpty").style.display = "block";
+	document.getElementById("stockChart").style.display = "none";
 	console.log("js data loaded");
 });
 
@@ -57,8 +57,8 @@ async function loadPriceHistory(stockCode) {
 	chartArea.onclick = () => {
 				      loadPriceHistory(stock.stockCode);
 				      loadRelations(stock.stockCode);
-				  };
-	
+				  };			  
+    renderStockChart(stockCode, prices);
     console.log("PriceHistory LOADED");
 }
 
